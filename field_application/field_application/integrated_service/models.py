@@ -30,18 +30,20 @@ def generate_time_table():
     return TIME
 
 
-class MeetingRoomApplication(models.Model):
+class InteServiceApplication(models.Model):
 
     TIME = generate_time_table()
 
     PLACE = (
-        #(u'学生活动中心307会议室', u'学生活动中心307会议室'),
-        (u'石头坞一楼会议室', u'石头坞一楼会议室'),
-        #(u'石头坞二楼会议室', u'石头坞二楼会议室'),
-        #(u'学生活动中心305会议室', u'学生活动中心305会议室'),
+        (u'一楼 101活动室', u'一楼 101活动室'),
+        (u'一楼 111工作坊', u'一楼 111工作坊'),
+        (u'一楼 110工作坊', u'一楼 110工作坊'),
+        (u'四楼 426会议室', u'四楼 426会议室'),
+        (u'一楼 中厅', u'一楼 中厅'),
+        #(u'天台', u'天台'),
     )
 
-    meeting_topic = models.CharField(max_length=50)
+    topic = models.CharField(max_length=50)
     organization = models.ForeignKey(Organization)
     date = models.DateField()
     place = models.CharField(max_length=50, choices=PLACE)
@@ -51,23 +53,19 @@ class MeetingRoomApplication(models.Model):
     applicant_stu_id = models.CharField(max_length=15)
     applicant_college = models.CharField(max_length=50)
     applicant_phone_number = models.CharField(max_length=30)
-    meeting_summary = models.CharField(max_length=200)
+    summary = models.CharField(max_length=200)
     remarks = models.CharField(max_length=300, blank=True, null=True)
     approved = models.BooleanField(default=False)
     application_time = models.DateTimeField(auto_now_add=True)
+    sponsor = models.CharField(max_length=30, blank=True, null=True)
+    sponsorship = models.CharField(max_length=30, blank=True, null=True)
+    sponsorship_usage = models.CharField(max_length=40, blank=True, null=True)
     deleted = models.BooleanField(default=False)
 
 
     @classmethod
     def generate_table(cls, offset=0):
-        ''' generate table
-        table - date : [ 7 * date ]
-              - time_list : [ 30 * time ]
-              - content - 石头坞一楼会议室      : [ 7*[ 30*[] ] ]
-                        - 石头坞二楼会议室      : [ 7*[ 30*[] ] ] 
-                        - 学生活动中心305会议室 : [ 7*[ 30*[] ] ] 
-                        - 学生活动中心307会议室 : [ 7*[ 30*[] ] ] 
-        '''
+
         content = { place: [ {time: [] for time, t in cls.TIME} \
                         for j in range(7)] \
                     for place, p in cls.PLACE}

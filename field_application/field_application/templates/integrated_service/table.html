@@ -1,11 +1,11 @@
 {% extends 'table_base.html' %}
 
-{% block htmltitle %}石头坞会议室使用申请{% endblock %}
+{% block htmltitle %}西南综合服务楼场地申请{% endblock %}
 
 {% block htmlhead %}
     {% load html_tools %}
 
-    {{ 'meeting_room/table.css' | as_css }}
+    {{ 'integrated_service/table.css' | as_css }}
 
     {{ 'artDialog/v4/artDialog.js'    | as_js  }}
     {{ 'artDialog/v4/skins/opera.css' | as_css }}
@@ -14,8 +14,8 @@
     {{ 'popupBox.js'  | as_js  }}
 {% endblock %}
 
-{% block top_title %}<h1>石头坞会议室使用申请</h1>{% endblock %}
-{% block title %}石头坞会议室安排表(图形版){% endblock %}
+{% block top_title %}<h1>西南综合服务楼场地申请</h1>{% endblock %}
+{% block title %}西南综合服务楼场地安排表(图形版){% endblock %}
 
 {% block main_content %}
 
@@ -44,14 +44,14 @@
                     {% for app in apps %}
 						{	
                             id:'{{ app.id }}',
-							title:'{{app.meeting_topic}}',
+							title:'{{app.topic}}',
 							approved:'{{ app.approved }}',
 							app_time:'{{ app.application_time | date:"n月d日 H:i:s" }}'
                         }
                         {% if not forloop.last %},{% endif %}
 					{% endfor %}
                 ]" 
-                onclick="javascript:showAppList( this.getAttribute('data-app-id'), 'meeting_room' )">
+                onclick="javascript:showAppList( this.getAttribute('data-app-id'), 'integrated_service' )">
             </td>
             {% else %}
             <td></td>

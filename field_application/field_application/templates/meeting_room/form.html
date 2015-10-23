@@ -1,9 +1,9 @@
 {% extends 'apply_base.html' %}
 
-{% block htmltitle %}会议室使用申请{% endblock %}
+{% block htmltitle %}石头坞会议室使用申请{% endblock %}
 
 {% block top_title %}
-    <h1>会议室使用申请</h1>
+    <h1>石头坞会议室使用申请</h1>
 {% endblock %}
 
 {% block htmlhead %}
@@ -13,8 +13,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <h6 style="color:red;text-align:center;line-height:300%">石头坞一楼会议室周一12：00-14：00暂停申请，</h6>
-    <h6 style="color:red;text-align:center;line-height:300%">307会议室周日20：00-23：00暂停申请，谢谢合作!</h6>
+    </br>
     <form method="POST" enctype="multipart/form-data" action="{{ post_url }}" id="application_form">
         {% csrf_token %}
         <table>

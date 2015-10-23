@@ -38,6 +38,7 @@ DATABASES = {
     }
 }
 
+
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = []
@@ -132,6 +133,10 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
 )
 
+RAVEN_CONFIG = {
+    'dsn': '',
+}
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -143,12 +148,14 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
 
     'django_like',
-
+     
+    'raven.contrib.django.raven_compat',
     'field_application.custom',
     'field_application.account',
     'field_application.student_activity_center',
     'field_application.campus_field',
     'field_application.meeting_room',
+    'field_application.integrated_service',
     # 'field_application.south_stadium',
     'field_application.utils',
     'field_application.document',
